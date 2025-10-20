@@ -2,6 +2,8 @@ const path = require('path');
 require('dotenv').config({ path: path.join(__dirname, '../.env') });
 const express = require('express');
 const cors = require('cors');
+const morgan = require('morgan');
+const rateLimit = require('express-rate-limit');
 const fs = require('fs');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
@@ -18,8 +20,33 @@ const stripe = STRIPE_SECRET_KEY ? new Stripe(STRIPE_SECRET_KEY) : null;
 
 initializeDatabase();
 
-app.use(cors());
+// Logging (skip in tests)
+if (process.env.NODE_ENV !== 'test') {
+  app.use(morgan('combined'));
+}
+
+// CORS with optional allowlist from env (comma separated)
+const allowedOrigins = (process.env.CORS_ORIGINS || '')
+  .split(',')
+  .map((s) => s.trim())
+  .filter(Boolean);
+app.use(
+  cors({
+    origin: (origin, callback) => {
+      if (!origin || allowedOrigins.length === 0 || allowedOrigins.includes(origin)) {
+        return callback(null, true);
+      }
+      return callback(new Error('CORS bloqueado para esta origem.'), false);
+    },
+    credentials: true,
+  })
+);
+
 app.use(express.json());
+
+// Basic rate limit for all API routes
+const apiLimiter = rateLimit({ windowMs: 15 * 60 * 1000, limit: 200, standardHeaders: true, legacyHeaders: false });
+app.use('/api', apiLimiter);
 
 const dbAll = (sql, params = []) =>
   new Promise((resolve, reject) => {
@@ -1544,6 +1571,12 @@ app.get('/api/health', (_, res) => {
 app.head('/api/health', (_req, res) => {
   res.status(200).end();
 });
+
+// Stricter limiters for sensitive endpoints
+const authLoginLimiter = rateLimit({ windowMs: 15 * 60 * 1000, limit: 10, standardHeaders: true, legacyHeaders: false });
+app.use('/api/auth/login', authLoginLimiter);
+const checkoutLimiter = rateLimit({ windowMs: 15 * 60 * 1000, limit: 20, standardHeaders: true, legacyHeaders: false });
+app.use('/api/checkout/session', checkoutLimiter);
 
 app.get('/api/categories', async (req, res) => {
   try {
