@@ -1,5 +1,22 @@
 {
   "build": {
-    "root": "server"
+    "root": "server",
+    "builder": "NIXPACKS",
+    "buildCommand": "npm ci"
+  },
+  "deploy": {
+    "startCommand": "npm start",
+    "healthcheckPath": "/api/health",
+    "restartPolicyType": "ON_FAILURE"
+  },
+  "env": {
+    "NODE_ENV": "production",
+    "JWT_SECRET": "uma_chave_bem_grande_e_segura_aqui",
+    "JWT_EXPIRES_IN": "12h",
+    "CORS_ORIGINS": "*",
+    "SUPABASE_URL": "https://teu-projeto.supabase.co",
+    "SUPABASE_ANON_KEY": "tua_chave_publica_aqui",
+    "STRIPE_SECRET_KEY": "sk_test_xxx",
+    "VITE_API_URL": "https://continue-ia.up.railway.app"
   }
 }
