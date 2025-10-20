@@ -5,8 +5,8 @@ WORKDIR /app
 # Cache installs
 COPY client/package*.json client/
 COPY server/package*.json server/
-RUN npm ci --prefix client \
- && npm ci --prefix server
+RUN npm install --prefix client --no-fund --no-audit \
+ && npm install --prefix server --no-fund --no-audit
 
 # Copy source and build client
 COPY client client
@@ -25,9 +25,8 @@ COPY --from=builder /app/client/dist client/dist
 COPY --from=builder /app/server server
 
 # Install only server production deps
-RUN npm ci --omit=dev --prefix server
+RUN npm install --omit=dev --no-fund --no-audit --prefix server
 
 WORKDIR /app/server
 EXPOSE 4000
 CMD ["node","src/app.js"]
-
