@@ -28,8 +28,8 @@ jobs:
         working-directory: client
 
       # Instalar deps do server e podar dev deps
-      - name: Install server deps
-        run: npm ci
+      - name: Install server deps (npm install)
+        run: npm install --no-audit --no-fund
         working-directory: server
 
       - name: Prune server dev deps
