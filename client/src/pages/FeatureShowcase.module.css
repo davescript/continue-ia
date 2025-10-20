@@ -1,0 +1,90 @@
+.hero {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2.5rem;
+  align-items: center;
+  padding: clamp(2rem, 6vw, 4rem);
+  border-radius: 32px;
+  background: linear-gradient(135deg, rgba(184, 92, 89, 0.12), rgba(123, 151, 166, 0.1));
+  box-shadow: var(--shadow-soft);
+  margin-bottom: 3.5rem;
+}
+
+.heroImage {
+  position: relative;
+  border-radius: 28px;
+  overflow: hidden;
+  box-shadow: var(--shadow-soft);
+}
+
+.heroImage img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.badge {
+  position: absolute;
+  top: 1.25rem;
+  left: 1.25rem;
+  background: rgba(255, 255, 255, 0.9);
+  color: var(--color-primary);
+  padding: 0.4rem 1rem;
+  border-radius: 999px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+}
+
+.heroContent {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.heroContent h1 {
+  font-size: clamp(2.2rem, 5vw, 3.2rem);
+  margin: 0;
+}
+
+.priceRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  align-items: center;
+}
+
+.price {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--color-primary);
+}
+
+.heroActions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.relatedSection {
+  display: grid;
+  gap: 2rem;
+}
+
+.relatedHeader h2 {
+  margin: 0;
+  font-size: clamp(1.8rem, 4vw, 2.6rem);
+}
+
+.relatedGrid {
+  display: grid;
+  gap: 1.75rem;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+}
+
+@media (max-width: 768px) {
+  .hero {
+    padding: 2rem;
+  }
+}
