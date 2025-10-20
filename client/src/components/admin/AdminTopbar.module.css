@@ -1,0 +1,63 @@
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.75rem 2.5rem 1.25rem;
+  border-bottom: 1px solid rgba(184, 92, 89, 0.12);
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(10px);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.welcome {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.welcome span {
+  font-size: 0.85rem;
+  color: var(--color-muted);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.actions {
+  display: inline-flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.user {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.2rem;
+}
+
+.userName {
+  font-weight: 600;
+}
+
+.logout {
+  border: none;
+  border-radius: var(--radius-pill);
+  background: rgba(184, 92, 89, 0.12);
+  color: var(--color-primary);
+  padding: 0.6rem 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.25s ease;
+}
+
+.logout:hover {
+  background: rgba(184, 92, 89, 0.2);
+}
+
+@media (max-width: 960px) {
+  .topbar {
+    padding: 1.25rem 1.5rem 1rem;
+  }
+}
