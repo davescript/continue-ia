@@ -1,0 +1,86 @@
+.header {
+  max-width: 620px;
+  margin: 0 auto 2rem;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.wrapper {
+  max-width: 960px;
+  margin: 0 auto;
+  display: grid;
+  gap: 2rem;
+}
+
+.progress {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.progressItem {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-weight: 600;
+  color: var(--color-muted);
+}
+
+.progressItem--active {
+  color: var(--color-primary);
+}
+
+.progressItem--upcoming {
+  color: var(--color-muted);
+  opacity: 0.75;
+}
+
+.progressDot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: currentColor;
+  box-shadow: 0 0 0 4px rgba(184, 92, 89, 0.15);
+}
+
+.support {
+  display: grid;
+  gap: 1.5rem;
+  border-radius: 24px;
+  padding: 2rem;
+  background: rgba(255, 255, 255, 0.85);
+  border: 1px solid rgba(184, 92, 89, 0.12);
+  box-shadow: var(--shadow-light);
+}
+
+.supportGrid {
+  display: grid;
+  gap: 1.25rem;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+}
+
+.empty {
+  margin-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.25rem;
+  text-align: center;
+}
+
+.empty .button {
+  width: auto;
+}
+
+@media (max-width: 640px) {
+  .progress {
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+  }
+}
