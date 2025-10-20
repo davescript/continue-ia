@@ -1,0 +1,8 @@
+# Padrão: dono principal do repositório
+* @davescript
+
+# Áreas (ajuste conforme seu time)
+/client/ @davescript
+/server/ @davescript
+/docs/   @davescript
+
