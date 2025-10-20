@@ -1,0 +1,92 @@
+.intro {
+  text-align: center;
+  max-width: 780px;
+  margin: 0 auto 3rem;
+  display: grid;
+  gap: 1rem;
+}
+
+.intro h1 {
+  font-size: clamp(2rem, 5vw, 3.2rem);
+  margin: 0;
+}
+
+.experienceGrid {
+  display: grid;
+  gap: 2rem;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  margin-top: 2rem;
+}
+
+.galleryGrid {
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+}
+
+.galleryCard {
+  border-radius: var(--radius-base);
+  overflow: hidden;
+  background: var(--color-surface);
+  border: 1px solid rgba(184, 92, 89, 0.12);
+  box-shadow: var(--shadow-light);
+  display: flex;
+  flex-direction: column;
+}
+
+.galleryImage {
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+}
+
+.galleryImage img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.galleryContent {
+  padding: 1.5rem;
+  display: grid;
+  gap: 0.6rem;
+}
+
+.services {
+  margin: 4rem 0;
+  border-radius: 28px;
+  padding: 3rem;
+  background: linear-gradient(135deg, rgba(184, 92, 89, 0.08), rgba(123, 151, 166, 0.12));
+}
+
+.services h2 {
+  margin-top: 0;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.servicesList {
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+}
+
+.serviceCard {
+  padding: 1.5rem;
+  border-radius: var(--radius-base);
+  background: rgba(255, 255, 255, 0.92);
+  border: 1px solid rgba(184, 92, 89, 0.12);
+  box-shadow: var(--shadow-light);
+  display: grid;
+  gap: 0.8rem;
+}
+
+.serviceIcon {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(184, 92, 89, 0.12);
+  color: var(--color-primary);
+}
