@@ -1,0 +1,51 @@
+.intro {
+  text-align: center;
+  max-width: 760px;
+  margin: 0 auto 3rem;
+  display: grid;
+  gap: 1rem;
+}
+
+.intro h1 {
+  font-size: clamp(2rem, 5vw, 3rem);
+  margin: 0;
+}
+
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  justify-content: center;
+  margin-bottom: 2.5rem;
+}
+
+.filterButton {
+  border: 1px solid rgba(184, 92, 89, 0.2);
+  border-radius: var(--radius-pill);
+  padding: 0.65rem 1.4rem;
+  background: rgba(255, 255, 255, 0.8);
+  color: var(--color-muted);
+  font-weight: 500;
+  transition: var(--transition-base);
+  cursor: pointer;
+}
+
+.filterButtonActive {
+  background: linear-gradient(135deg, var(--color-primary), var(--color-primary-dark));
+  color: #fff;
+  box-shadow: var(--shadow-light);
+}
+
+.productsGrid {
+  display: grid;
+  gap: 2rem;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+}
+
+.emptyState {
+  padding: 4rem 0;
+  text-align: center;
+  color: var(--color-muted);
+  display: grid;
+  gap: 0.75rem;
+}
