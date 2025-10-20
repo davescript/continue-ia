@@ -1,0 +1,236 @@
+.wrapper {
+  display: grid;
+  gap: 2.5rem;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+}
+
+.header h1 {
+  margin: 0.75rem 0 0.25rem;
+}
+
+.metaSection {
+  padding: 1.5rem;
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.92);
+  box-shadow: var(--shadow-light);
+  display: grid;
+  gap: 1rem;
+}
+
+.form {
+  display: grid;
+  gap: 1rem;
+  max-width: 520px;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.field input,
+.field select,
+.field textarea {
+  border: 1px solid rgba(184, 92, 89, 0.2);
+  border-radius: 10px;
+  padding: 0.7rem 0.9rem;
+}
+
+.builder {
+  display: grid;
+  gap: 2rem;
+  grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+}
+
+.structure {
+  display: grid;
+  gap: 1.5rem;
+}
+
+.sectionHeader {
+  display: grid;
+  gap: 1rem;
+  padding: 1.5rem;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.9);
+  box-shadow: var(--shadow-light);
+}
+
+.newSectionForm {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.sectionList {
+  display: grid;
+  gap: 1.5rem;
+}
+
+.sectionItem {
+  padding: 1.5rem;
+  border-radius: 18px;
+  background: #fff;
+  box-shadow: var(--shadow-light);
+  display: grid;
+  gap: 1rem;
+}
+
+.sectionToolbar,
+.componentToolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+}
+
+.toolbarButtons {
+  display: inline-flex;
+  gap: 0.4rem;
+}
+
+.toolbarButtons button {
+  min-width: 2.5rem;
+  padding: 0.35rem 0.5rem;
+}
+
+.sectionForm,
+.componentForm,
+.newComponentForm {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.sectionForm label,
+.componentForm label {
+  display: grid;
+  gap: 0.35rem;
+}
+
+.sectionForm textarea,
+.componentForm textarea,
+.newComponentForm textarea {
+  min-height: 90px;
+  resize: vertical;
+  font-family: ui-monospace, SFMono-Regular, Consolas, 'Liberation Mono', Menlo, monospace;
+}
+
+.componentList {
+  display: grid;
+  gap: 1rem;
+}
+
+.componentItems {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 1rem;
+}
+
+.componentItem {
+  padding: 1rem;
+  border-radius: 14px;
+  border: 1px dashed rgba(184, 92, 89, 0.3);
+}
+
+.preview {
+  display: grid;
+  gap: 1rem;
+}
+
+.previewCanvas {
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.86);
+  box-shadow: var(--shadow-soft);
+  padding: 1.5rem;
+  max-height: 80vh;
+  overflow: auto;
+}
+
+.versionSection {
+  display: grid;
+  gap: 1.5rem;
+  padding: 1.5rem;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.9);
+  box-shadow: var(--shadow-light);
+}
+
+.versionHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+}
+
+.versionForm {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.versionForm input {
+  flex: 1;
+  border: 1px solid rgba(184, 92, 89, 0.2);
+  border-radius: 10px;
+  padding: 0.7rem 0.9rem;
+}
+
+.versionsList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 1rem;
+}
+
+.versionItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem 1.2rem;
+  border-radius: 14px;
+  border: 1px solid rgba(184, 92, 89, 0.15);
+  background: #fff;
+}
+
+.versionActions {
+  display: inline-flex;
+  gap: 0.6rem;
+}
+
+@media (max-width: 1024px) {
+  .builder {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 640px) {
+  .sectionToolbar,
+  .componentToolbar {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .versionHeader {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .versionActions {
+    justify-content: flex-start;
+  }
+}
