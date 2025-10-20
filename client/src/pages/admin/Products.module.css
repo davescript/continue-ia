@@ -1,0 +1,137 @@
+.layout {
+  display: grid;
+  gap: 2rem;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  align-items: start;
+}
+
+.formCard,
+.tableCard {
+  background: #fff;
+  border-radius: var(--radius-base);
+  border: 1px solid rgba(184, 92, 89, 0.12);
+  box-shadow: var(--shadow-light);
+  padding: 1.75rem;
+  display: grid;
+  gap: 1.25rem;
+}
+
+.form {
+  display: grid;
+  gap: 1rem;
+}
+
+.field {
+  display: grid;
+  gap: 0.5rem;
+}
+
+.inline {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 1rem;
+}
+
+.label {
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+.input,
+.textarea,
+.select {
+  width: 100%;
+  padding: 0.85rem 1rem;
+  border-radius: 14px;
+  border: 1px solid rgba(184, 92, 89, 0.2);
+  background: rgba(255, 255, 255, 0.95);
+  font-size: 0.95rem;
+}
+
+.textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+.checkbox {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-weight: 500;
+}
+
+.actions {
+  display: inline-flex;
+  gap: 0.75rem;
+}
+
+.button {
+  border: none;
+  border-radius: var(--radius-pill);
+  padding: 0.8rem 1.4rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.buttonPrimary {
+  background: linear-gradient(135deg, var(--color-primary), var(--color-primary-dark));
+  color: #fff;
+}
+
+.buttonGhost {
+  background: rgba(184, 92, 89, 0.12);
+  color: var(--color-primary);
+}
+
+.buttonDanger {
+  background: rgba(184, 40, 32, 0.14);
+  color: #b23c35;
+}
+
+.buttonPrimary:hover,
+.buttonGhost:hover,
+.buttonDanger:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-light);
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.table th,
+.table td {
+  padding: 0.75rem 0.5rem;
+  border-bottom: 1px solid rgba(184, 92, 89, 0.1);
+  text-align: left;
+}
+
+.table th {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--color-muted);
+}
+
+.tag {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.25rem 0.65rem;
+  border-radius: var(--radius-pill);
+  background: rgba(184, 92, 89, 0.12);
+  color: var(--color-primary);
+  font-size: 0.75rem;
+}
+
+.tableActions {
+  display: inline-flex;
+  gap: 0.5rem;
+}
+
+@media (max-width: 1100px) {
+  .layout {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
