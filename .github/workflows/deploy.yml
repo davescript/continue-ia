@@ -3,31 +3,55 @@ name: Deploy
 on:
   push:
     branches: [ main ]
+  workflow_dispatch:
 
 jobs:
-  render:
-    name: Render Deploy
-    runs-on: ubuntu-latest
-    if: ${{ secrets.RENDER_SERVICE_ID != '' && secrets.RENDER_API_KEY != '' }}
-    steps:
-      - name: Trigger Render Deploy
-        run: |
-          curl -fsS -X POST \
-            -H 'Authorization: Bearer ${{ secrets.RENDER_API_KEY }}' \
-            -H 'Content-Type: application/json' \
-            https://api.render.com/v1/services/${{ secrets.RENDER_SERVICE_ID }}/deploys \
-            -d '{}'
-
   railway:
-    name: Railway Deploy
+    name: Railway Deploy (CLI)
     runs-on: ubuntu-latest
-    if: ${{ secrets.RAILWAY_TOKEN != '' }}
     steps:
-      - uses: actions/checkout@v4
-      - name: Railway Deploy
-        uses: railwayapp/railway-action@v1
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
         with:
-          service: ${{ secrets.RAILWAY_SERVICE_ID }}
+          node-version: '20'
+
+      # Build client para garantir que a SPA exista em client/dist
+      - name: Install client deps
+        run: npm ci
+        working-directory: client
+
+      - name: Build client
+        run: npm run build
+        working-directory: client
+
+      # Instalar deps do server e podar dev deps
+      - name: Install server deps
+        run: npm ci
+        working-directory: server
+
+      - name: Prune server dev deps
+        run: npm prune --omit=dev
+        working-directory: server
+
+      - name: Install Railway CLI
+        run: npm i -g @railway/cli
+
+      - name: Deploy folder /server with Railway
         env:
           RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
-
+          RAILWAY_PROJECT_ID: ${{ secrets.RAILWAY_PROJECT_ID || '8bcb43b8-a1b6-4c45-a959-895254eac658' }}
+          RAILWAY_SERVICE_ID: ${{ secrets.RAILWAY_SERVICE_ID || 'ead7c20a-82bf-4d26-9b39-c8e6bf02c229' }}
+        run: |
+          if [ -z "${RAILWAY_TOKEN}" ]; then
+            echo "RAILWAY_TOKEN secret não está definido" && exit 1
+          fi
+          echo "Projeto: $RAILWAY_PROJECT_ID" && echo "Serviço: $RAILWAY_SERVICE_ID"
+          railway up \
+            --project "$RAILWAY_PROJECT_ID" \
+            --service "$RAILWAY_SERVICE_ID" \
+            --path server \
+            --no-confirm \
+            --detach
