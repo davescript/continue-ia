@@ -1,0 +1,33 @@
+name: Deploy
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  render:
+    name: Render Deploy
+    runs-on: ubuntu-latest
+    if: ${{ secrets.RENDER_SERVICE_ID != '' && secrets.RENDER_API_KEY != '' }}
+    steps:
+      - name: Trigger Render Deploy
+        run: |
+          curl -fsS -X POST \
+            -H 'Authorization: Bearer ${{ secrets.RENDER_API_KEY }}' \
+            -H 'Content-Type: application/json' \
+            https://api.render.com/v1/services/${{ secrets.RENDER_SERVICE_ID }}/deploys \
+            -d '{}'
+
+  railway:
+    name: Railway Deploy
+    runs-on: ubuntu-latest
+    if: ${{ secrets.RAILWAY_TOKEN != '' }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Railway Deploy
+        uses: railwayapp/railway-action@v1
+        with:
+          service: ${{ secrets.RAILWAY_SERVICE_ID }}
+        env:
+          RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
+
