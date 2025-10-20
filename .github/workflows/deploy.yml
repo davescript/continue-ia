@@ -36,8 +36,8 @@ jobs:
         run: npm prune --omit=dev
         working-directory: server
 
-      - name: Install Railway CLI
-        run: npm i -g @railway/cli
+      - name: Ensure Railway CLI available (npx)
+        run: echo "Using npx @railway/cli"
 
       - name: Deploy folder /server with Railway
         env:
@@ -49,9 +49,8 @@ jobs:
             echo "RAILWAY_TOKEN secret não está definido" && exit 1
           fi
           echo "Projeto: $RAILWAY_PROJECT_ID" && echo "Serviço: $RAILWAY_SERVICE_ID"
-          railway up \
-            --project "$RAILWAY_PROJECT_ID" \
-            --service "$RAILWAY_SERVICE_ID" \
-            --path server \
-            --no-confirm \
-            --detach
+          # Configure contexto do projeto/serviço e fazer deploy do diretório server
+          npx @railway/cli --version
+          npx @railway/cli whoami || true
+          npx @railway/cli link --project "$RAILWAY_PROJECT_ID" --service "$RAILWAY_SERVICE_ID"
+          npx @railway/cli up --path server --no-confirm --detach
