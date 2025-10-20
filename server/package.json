@@ -5,7 +5,12 @@
   "scripts": {
     "dev": "nodemon src/app.js",
     "start": "node src/app.js",
-    "seed": "node src/seed.js"
+    "seed": "node src/seed.js",
+    "build:client": "npm_config_production=false npm --prefix ../client ci && npm --prefix ../client run build",
+    "postinstall": "npm run build:client || true"
+  },
+  "engines": {
+    "node": "20.x"
   },
   "keywords": [],
   "author": "",
